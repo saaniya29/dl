@@ -1,0 +1,21 @@
+import numpy as np
+import matplotlib.pyplot as plt
+X = np.array([1, 2, 3, 4, 5])
+y = np.array([1, 2, 3, 4, 5])
+m,b = 0,0
+learning_rate = 0.01
+iterations = 1000
+for i in range(iterations):
+    y_pred = m * X + b
+    error = y_pred - y
+    dm = (2 / len(X)) * sum(error * X)
+    db = (2 / len(X)) * sum(error)
+    m = m - learning_rate * dm
+    b = b - learning_rate * db
+print(f"Slope (m): {m}, Intercept (b): {b}")
+plt.scatter(X, y, color='blue', label='Data Points')
+plt.plot(X, m * X + b, color='red', label='Fitted Line')
+plt.title('Linear Regression with Gradient Descent')
+plt.xlabel('X')
+plt.ylabel('y')
+plt.show()
