@@ -1,0 +1,16 @@
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+import matplotlib.pyplot as plt
+X = np.array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])
+y = np.array([0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
+model = LogisticRegression()
+model.fit(X, y)
+X_test = np.linspace(0, 11, 100).reshape(-1, 1)
+y_prob = model.predict_proba(X_test)[:, 1]
+plt.scatter(X, y, color='blue', label='Data Points')
+plt.plot(X_test, y_prob, color='red', label='Logistic Curve')
+plt.title('Logistic Regression')
+plt.xlabel('X')
+plt.ylabel('Probability')
+plt.legend()
+plt.show()
